@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Customer from "./Components/customer";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const data = {
+  name: "Hwang",
+  birth: 850525,
+  gender: "man",
+  age: 25
+}
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Customer
+          name = {data.name}
+          birth = {data.birth}
+          gender = {data.gender}
+          age = {data.age}
+        />
+      </div>
+    );
+  }
 }
 
 export default App;
