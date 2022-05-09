@@ -1,6 +1,24 @@
 import React, { Component } from "react";
 import Customer from "./Components/customer";
 import "./App.css";
+import { Table } from "@mui/material";
+import { TableHead } from "@mui/material";
+import { TableBody } from "@mui/material";
+import { TableRow } from "@mui/material";
+import { TableCell } from "@mui/material";
+import { withStyles } from "@mui/material";
+import { Paper } from "@mui/material";
+
+const styles = (theme) => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: "auto"
+  },
+  table: {
+    minWidth: 1080
+  }
+})
 
 const customers = [
   {
@@ -31,27 +49,40 @@ const customers = [
 
 class App extends Component {
   render() {
+    const { classes } = this.props;
     return (
-      <div>
-        {
-          customers.map(arr => {
-            return (
-              <Customer
-                key = {arr.id}
-                id={arr.id}
-                img={arr.img}
-                name={arr.name}
-                birth={arr.birth}
-                gender={arr.gender}
-                age={arr.age}
-              />
-            )
-          }
-          )
-        })
-      </div>
+      <Paper className={classes.root}>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableCell>번호</TableCell>
+            <TableCell>이미지</TableCell>
+            <TableCell>이름</TableCell>
+            <TableCell>생일</TableCell>
+            <TableCell>성별</TableCell>
+            <TableCell>나이</TableCell>
+          </TableHead>
+          <TableBody>
+            {
+              customers.map(arr => {
+                return (
+                  <Customer
+                    key={arr.id}
+                    id={arr.id}
+                    img={arr.img}
+                    name={arr.name}
+                    birth={arr.birth}
+                    gender={arr.gender}
+                    age={arr.age}
+                  />
+                )
+              }
+              )
+            }
+          </TableBody>
+        </Table>
+      </Paper>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);
